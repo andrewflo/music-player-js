@@ -2,6 +2,7 @@
   "include": ["src"],
   "compilerOptions": {
     "target": "es6",
+    "lib": ["esnext"],
     "moduleResolution": "node",
     "declaration": true,
     "sourceMap": true,
