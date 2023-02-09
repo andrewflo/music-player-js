@@ -72,7 +72,19 @@ export function createMusicScheduler(timeSignature: string, tempo: number): Musi
   return { getTimeOffset, scheduleNotes };
 }
 
-export function createMusicPlayer(scheduler: MusicScheduler, noteSounds = GuitarNoteSounds, volume = 0.75) {
+export interface MusicPlayer {
+  audioPlayers: { [noteValue: number]: HTMLAudioElement };
+  timeouts: number[];
+  playNote: (noteNumber: number) => void;
+  playNotes: (barNotations: BarNotation[]) => void;
+  stop: () => void;
+}
+
+export function createMusicPlayer(
+  scheduler: MusicScheduler,
+  noteSounds = GuitarNoteSounds,
+  volume = 0.75
+): MusicPlayer {
   const audioPlayers: { [noteValue: number]: HTMLAudioElement } = {};
   let timeouts: number[] = [];
 
